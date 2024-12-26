@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deutschquiz: Konjunktiv II im Passiv</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        #quiz-container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        .question {
+            font-size: 1.5em;
+            margin: 20px 0;
+        }
+        .answer-btn {
+            display: block;
+            margin: 10px auto;
+            padding: 20px 40px;
+            font-size: 1.2em;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 70%;
+        }
+        .answer-btn:hover {
+            background-color: #45a049;
+        }
+        .answer-btn:active {
+            background-color: #397D3F;
+        }
+        #next-button {
+            margin-top: 20px;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        #next-button:hover {
+            background-color: #45a049;
+        }
+        #next-button:disabled {
+            background-color: #888;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+
+<div id="quiz-container">
+    <h1>Deutschquiz: Konjunktiv II im Passiv</h1>
+    <div id="question-container">
+        <p class="question" id="question"></p>
+        <button class="answer-btn" id="answer1" onclick="checkAnswer(1)"></button>
+        <button class="answer-btn" id="answer2" onclick="checkAnswer(2)"></button>
+        <button class="answer-btn" id="answer3" onclick="checkAnswer(3)"></button>
+        <button class="answer-btn" id="answer4" onclick="checkAnswer(4)"></button>
+    </div>
+    <button id="next-button" onclick="nextQuestion()" disabled>Weiter</button>
+</div>
+
+<script>
+    const questions = [
+        {
+            question: "Wie lautet der Konjunktiv II Passiv von 'Das Buch wird gelesen'?",
+            answers: ["Das Buch würde gelesen werden", "Das Buch wäre gelesen worden", "Das Buch wurde gelesen", "Das Buch wird gelesen werden"],
+            correct: 1
+        },
+        {
+            question: "Wie lautet der Konjunktiv II Passiv von 'Die E-Mail wird geschrieben'?",
+            answers: ["Die E-Mail würde geschrieben werden", "Die E-Mail wäre geschrieben worden", "Die E-Mail schrieb", "Die E-Mail wird geschrieben werden"],
+            correct: 1
+        },
+        // ... Füge hier weitere 18 Fragen hinzu
+    ];
+
+    let currentQuestion = 0;
+
+    function loadQuestion() {
+        const questionObj = questions[currentQuestion];
+        document.getElementById("question").innerText = questionObj.question;
+        for (let i = 1; i <= 4; i++) {
+            document.getElementById("answer" + i).innerText = questionObj.answers[i - 1];
+        }
+        document.getElementById("next-button").disabled = true;
+    }
+
+    function checkAnswer(answer) {
+        const questionObj = questions[currentQuestion];
+        const correctAnswer = questionObj.correct;
+
+        // Sound abspielen
+        const sound = new Audio(answer === correctAnswer ? 'correct-sound.mp3' : 'wrong-sound.mp3');
+        sound.play();
+
+        // Alle Buttons deaktivieren
+        for (let i = 1; i <= 4; i++) {
+            document.getElementById("answer" + i).disabled = true;
+        }
+
+        // Weiter-Button aktivieren
+        document.getElementById("next-button").disabled = false;
+    }
+
+    function nextQuestion() {
+        currentQuestion++;
+        if (currentQuestion < questions.length) {
+            loadQuestion();
+        } else {
+            alert("Herzlichen Glückwunsch! Du hast das Quiz abgeschlossen.");
+        }
+    }
+
+    loadQuestion();
+</script>
+
+</body>
+</html>
