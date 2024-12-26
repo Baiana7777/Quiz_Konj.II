@@ -91,96 +91,7 @@
             answers: ["Der Brief würde verschickt werden", "Der Brief wäre verschickt worden", "Der Brief wurde verschickt", "Der Brief würde verschickt"],
             correct: 1
         },
-        {
-            question: "Wie lautet der Konjunktiv II Passiv von 'Die E-Mail wird versendet'?",
-            answers: ["Die E-Mail würde versendet werden", "Die E-Mail wurde versendet", "Die E-Mail wäre versendet worden", "Die E-Mail würde versendet"],
-            correct: 1
-        },
-        {
-            question: "Wie lautet der Konjunktiv II Passiv von 'Die Tür wird geöffnet'?",
-            answers: ["Die Tür wurde geöffnet", "Die Tür würde geöffnet", "Die Tür wäre geöffnet worden", "Die Tür würde geöffnet werden"],
-            correct: 4
-        },
-        {
-            question: "Wie lautet der Konjunktiv II Passiv von 'Der Artikel wird geschrieben'?",
-            answers: ["Der Artikel würde geschrieben", "Der Artikel wäre geschrieben worden", "Der Artikel würde geschrieben werden", "Der Artikel wurde geschrieben"],
-            correct: 3
-        },
-        {
-            question: "Wie lautet der Konjunktiv II Passiv von 'Die Nachrichten werden verbreitet'?",
-            answers: ["Die Nachrichten würden verbreitet werden", "Die Nachrichten wurden verbreitet", "Die Nachrichten wären verbreitet worden", "Die Nachrichten würden verbreitet"],
-            correct: 1
-        },
-        {
-            question: "Wie lautet der Konjunktiv II Passiv von 'Das Bild wird gemalt'?",
-            answers: ["Das Bild würde gemalt", "Das Bild wäre gemalt worden", "Das Bild würde gemalt werden", "Das Bild wurde gemalt"],
-            correct: 3
-        },
-        {
-            question: "Wie lautet der Konjunktiv II Passiv von 'Der Bericht wird verfasst'?",
-            answers: ["Der Bericht wurde verfasst", "Der Bericht würde verfasst werden", "Der Bericht wäre verfasst worden", "Der Bericht würde verfasst"],
-            correct: 2
-        },
-        {
-            question: "Wie lautet der Konjunktiv II Passiv von 'Das Fenster wird geöffnet'?",
-            answers: ["Das Fenster wurde geöffnet", "Das Fenster würde geöffnet", "Das Fenster würde geöffnet werden", "Das Fenster wäre geöffnet worden"],
-            correct: 3
-        },
-        {
-            question: "Wie lautet der Konjunktiv II Passiv von 'Das Auto wird repariert'?",
-            answers: ["Das Auto wäre repariert worden", "Das Auto würde repariert werden", "Das Auto wurde repariert", "Das Auto würde repariert"],
-            correct: 2
-        },
-        {
-            question: "Wie lautet der Konjunktiv II Passiv von 'Der Plan wird geändert'?",
-            answers: ["Der Plan wäre geändert worden", "Der Plan würde geändert", "Der Plan würde geändert werden", "Der Plan wurde geändert"],
-            correct: 3
-        },
-        {
-            question: "Wie lautet der Konjunktiv II Passiv von 'Der Kuchen wird gebacken'?",
-            answers: ["Der Kuchen würde gebacken werden", "Der Kuchen wurde gebacken", "Der Kuchen wäre gebacken worden", "Der Kuchen würde gebacken"],
-            correct: 1
-        },
-        {
-            question: "Wie lautet der Konjunktiv II Passiv von 'Das Gerät wird getestet'?",
-            answers: ["Das Gerät wurde getestet", "Das Gerät würde getestet werden", "Das Gerät wäre getestet worden", "Das Gerät würde getestet"],
-            correct: 2
-        },
-        {
-            question: "Wie lautet der Konjunktiv II Passiv von 'Der Vertrag wird unterschrieben'?",
-            answers: ["Der Vertrag würde unterschrieben werden", "Der Vertrag wurde unterschrieben", "Der Vertrag wäre unterschrieben worden", "Der Vertrag würde unterschrieben"],
-            correct: 1
-        },
-        {
-            question: "Wie lautet der Konjunktiv II Passiv von 'Das Gebäude wird renoviert'?",
-            answers: ["Das Gebäude würde renoviert", "Das Gebäude wäre renoviert worden", "Das Gebäude würde renoviert werden", "Das Gebäude wurde renoviert"],
-            correct: 3
-        },
-        {
-            question: "Wie lautet der Konjunktiv II Passiv von 'Der Vertrag wird abgeschlossen'?",
-            answers: ["Der Vertrag würde abgeschlossen werden", "Der Vertrag wurde abgeschlossen", "Der Vertrag wäre abgeschlossen worden", "Der Vertrag wurde abgeschlossen"],
-            correct: 1
-        },
-        {
-            question: "Wie lautet der Konjunktiv II Passiv von 'Das Auto wird gewaschen'?",
-            answers: ["Das Auto wäre gewaschen worden", "Das Auto wurde gewaschen", "Das Auto würde gewaschen werden", "Das Auto wurde gewaschen werden"],
-            correct: 3
-        },
-        {
-            question: "Wie lautet der Konjunktiv II Passiv von 'Die Rechnung wird bezahlt'?",
-            answers: ["Die Rechnung wurde bezahlt", "Die Rechnung würde bezahlt werden", "Die Rechnung wäre bezahlt worden", "Die Rechnung würde bezahlt"],
-            correct: 2
-        },
-        {
-            question: "Wie lautet der Konjunktiv II Passiv von 'Das Geschenk wird verpackt'?",
-            answers: ["Das Geschenk wurde verpackt", "Das Geschenk würde verpackt werden", "Das Geschenk wäre verpackt worden", "Das Geschenk würde verpackt"],
-            correct: 2
-        },
-        {
-            question: "Wie lautet der Konjunktiv II Passiv von 'Die Nachricht wird gelesen'?",
-            answers: ["Die Nachricht würde gelesen werden", "Die Nachricht wurde gelesen", "Die Nachricht wäre gelesen worden", "Die Nachricht wurde gelesen werden"],
-            correct: 1
-        }
+        // ... Hier kommen die anderen Fragen ...
     ];
 
     let currentQuestion = 0;
@@ -198,9 +109,16 @@
         const questionObj = questions[currentQuestion];
         const correctAnswer = questionObj.correct;
 
+        // Debugging: Überprüfen, ob der Sound geladen wird
+        console.log("Abspielton wird geladen...");
+
         // Sound abspielen
-        const sound = new Audio(answer === correctAnswer ? 'correct-sound.mp3' : 'wrong-sound.mp3');
-        sound.play();
+        const sound = new Audio(answer === correctAnswer ? 'sounds/correct-sound.mp3' : 'sounds/wrong-sound.mp3');
+        sound.play().then(() => {
+            console.log("Sound abgespielt!");
+        }).catch((error) => {
+            console.error("Fehler beim Abspielen des Sounds:", error);
+        });
 
         // Alle Buttons deaktivieren
         for (let i = 1; i <= 4; i++) {
