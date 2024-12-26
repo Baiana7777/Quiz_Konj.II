@@ -199,7 +199,7 @@
         const correctAnswer = questionObj.correct;
 
         // Sound abspielen
-        const sound = new Audio(answer === correctAnswer ? 'sounds/correct-sound.mp3' : 'sounds/wrong-sound.mp3');
+        const sound = new Audio(answer === correctAnswer ? 'correct-sound.mp3' : 'wrong-sound.mp3');
         sound.play();
 
         // Alle Buttons deaktivieren
