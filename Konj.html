@@ -1,138 +1,103 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deutschquiz: Konjunktiv II im Passiv</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f8ff;
-            color: #333;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-        }
-        #quiz-container {
-            width: 80%;
-            margin: auto;
-            padding: 20px;
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-        h1 {
-            color: #4CAF50;
-        }
-        .question {
-            font-size: 1.5em;
-            margin: 20px 0;
-        }
-        .answer-btn {
-            display: block;
-            margin: 10px auto;
-            padding: 20px 40px;
-            font-size: 1.2em;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            width: 70%;
-        }
-        .answer-btn:hover {
-            background-color: #45a049;
-        }
-        .answer-btn:active {
-            background-color: #397D3F;
-        }
-        #next-button {
-            margin-top: 20px;
-            padding: 15px 30px;
-            font-size: 1.2em;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-        #next-button:hover {
-            background-color: #45a049;
-        }
-        #next-button:disabled {
-            background-color: #888;
-            cursor: not-allowed;
-        }
-    </style>
-</head>
-<body>
-
-<div id="quiz-container">
-    <h1>Deutschquiz: Konjunktiv II im Passiv</h1>
-    <div id="question-container">
-        <p class="question" id="question"></p>
-        <button class="answer-btn" id="answer1" onclick="checkAnswer(1)"></button>
-        <button class="answer-btn" id="answer2" onclick="checkAnswer(2)"></button>
-        <button class="answer-btn" id="answer3" onclick="checkAnswer(3)"></button>
-        <button class="answer-btn" id="answer4" onclick="checkAnswer(4)"></button>
-    </div>
-    <button id="next-button" onclick="nextQuestion()" disabled>Weiter</button>
-</div>
-
-<script>
-    const questions = [
-        {
-            question: "Wie lautet der Konjunktiv II Passiv von 'Das Buch wird gelesen'?",
-            answers: ["Das Buch würde gelesen werden", "Das Buch wäre gelesen worden", "Das Buch wurde gelesen", "Das Buch wird gelesen werden"],
-            correct: 1
-        },
-        {
-            question: "Wie lautet der Konjunktiv II Passiv von 'Die E-Mail wird geschrieben'?",
-            answers: ["Die E-Mail würde geschrieben werden", "Die E-Mail wäre geschrieben worden", "Die E-Mail schrieb", "Die E-Mail wird geschrieben werden"],
-            correct: 1
-        },
-        // ... Füge hier weitere 18 Fragen hinzu
-    ];
-
-    let currentQuestion = 0;
-
-    function loadQuestion() {
-        const questionObj = questions[currentQuestion];
-        document.getElementById("question").innerText = questionObj.question;
-        for (let i = 1; i <= 4; i++) {
-            document.getElementById("answer" + i).innerText = questionObj.answers[i - 1];
-        }
-        document.getElementById("next-button").disabled = true;
+const questions = [
+    {
+        question: "Wie lautet der Konjunktiv II Passiv von 'Das Buch wird geschrieben'?",
+        answers: ["Das Buch würde geschrieben", "Das Buch wäre geschrieben worden", "Das Buch würde geschrieben werden", "Das Buch wurde geschrieben"],
+        correct: 3
+    },
+    {
+        question: "Wie lautet der Konjunktiv II Passiv von 'Der Brief wird verschickt'?",
+        answers: ["Der Brief würde verschickt werden", "Der Brief wäre verschickt worden", "Der Brief wurde verschickt", "Der Brief würde verschickt"],
+        correct: 1
+    },
+    {
+        question: "Wie lautet der Konjunktiv II Passiv von 'Die E-Mail wird versendet'?",
+        answers: ["Die E-Mail würde versendet werden", "Die E-Mail wurde versendet", "Die E-Mail wäre versendet worden", "Die E-Mail würde versendet"],
+        correct: 1
+    },
+    {
+        question: "Wie lautet der Konjunktiv II Passiv von 'Die Tür wird geöffnet'?",
+        answers: ["Die Tür wurde geöffnet", "Die Tür würde geöffnet", "Die Tür wäre geöffnet worden", "Die Tür würde geöffnet werden"],
+        correct: 4
+    },
+    {
+        question: "Wie lautet der Konjunktiv II Passiv von 'Der Artikel wird geschrieben'?",
+        answers: ["Der Artikel würde geschrieben", "Der Artikel wäre geschrieben worden", "Der Artikel würde geschrieben werden", "Der Artikel wurde geschrieben"],
+        correct: 3
+    },
+    {
+        question: "Wie lautet der Konjunktiv II Passiv von 'Die Nachrichten werden verbreitet'?",
+        answers: ["Die Nachrichten würden verbreitet werden", "Die Nachrichten wurden verbreitet", "Die Nachrichten wären verbreitet worden", "Die Nachrichten würden verbreitet"],
+        correct: 1
+    },
+    {
+        question: "Wie lautet der Konjunktiv II Passiv von 'Das Bild wird gemalt'?",
+        answers: ["Das Bild würde gemalt", "Das Bild wäre gemalt worden", "Das Bild würde gemalt werden", "Das Bild wurde gemalt"],
+        correct: 3
+    },
+    {
+        question: "Wie lautet der Konjunktiv II Passiv von 'Der Bericht wird verfasst'?",
+        answers: ["Der Bericht wurde verfasst", "Der Bericht würde verfasst werden", "Der Bericht wäre verfasst worden", "Der Bericht würde verfasst"],
+        correct: 2
+    },
+    {
+        question: "Wie lautet der Konjunktiv II Passiv von 'Das Fenster wird geöffnet'?",
+        answers: ["Das Fenster wurde geöffnet", "Das Fenster würde geöffnet", "Das Fenster würde geöffnet werden", "Das Fenster wäre geöffnet worden"],
+        correct: 3
+    },
+    {
+        question: "Wie lautet der Konjunktiv II Passiv von 'Das Auto wird repariert'?",
+        answers: ["Das Auto wäre repariert worden", "Das Auto würde repariert werden", "Das Auto wurde repariert", "Das Auto würde repariert"],
+        correct: 2
+    },
+    {
+        question: "Wie lautet der Konjunktiv II Passiv von 'Der Plan wird geändert'?",
+        answers: ["Der Plan wäre geändert worden", "Der Plan würde geändert", "Der Plan würde geändert werden", "Der Plan wurde geändert"],
+        correct: 3
+    },
+    {
+        question: "Wie lautet der Konjunktiv II Passiv von 'Der Kuchen wird gebacken'?",
+        answers: ["Der Kuchen würde gebacken werden", "Der Kuchen wurde gebacken", "Der Kuchen wäre gebacken worden", "Der Kuchen würde gebacken"],
+        correct: 1
+    },
+    {
+        question: "Wie lautet der Konjunktiv II Passiv von 'Das Gerät wird getestet'?",
+        answers: ["Das Gerät wurde getestet", "Das Gerät würde getestet werden", "Das Gerät wäre getestet worden", "Das Gerät würde getestet"],
+        correct: 2
+    },
+    {
+        question: "Wie lautet der Konjunktiv II Passiv von 'Der Vertrag wird unterschrieben'?",
+        answers: ["Der Vertrag würde unterschrieben werden", "Der Vertrag wurde unterschrieben", "Der Vertrag wäre unterschrieben worden", "Der Vertrag würde unterschrieben"],
+        correct: 1
+    },
+    {
+        question: "Wie lautet der Konjunktiv II Passiv von 'Das Gebäude wird renoviert'?",
+        answers: ["Das Gebäude würde renoviert", "Das Gebäude wäre renoviert worden", "Das Gebäude würde renoviert werden", "Das Gebäude wurde renoviert"],
+        correct: 3
+    },
+    {
+        question: "Wie lautet der Konjunktiv II Passiv von 'Der Vertrag wird abgeschlossen'?",
+        answers: ["Der Vertrag würde abgeschlossen werden", "Der Vertrag wurde abgeschlossen", "Der Vertrag wäre abgeschlossen worden", "Der Vertrag wurde abgeschlossen"],
+        correct: 1
+    },
+    {
+        question: "Wie lautet der Konjunktiv II Passiv von 'Das Auto wird gewaschen'?",
+        answers: ["Das Auto wäre gewaschen worden", "Das Auto wurde gewaschen", "Das Auto würde gewaschen werden", "Das Auto wurde gewaschen werden"],
+        correct: 3
+    },
+    {
+        question: "Wie lautet der Konjunktiv II Passiv von 'Die Rechnung wird bezahlt'?",
+        answers: ["Die Rechnung wurde bezahlt", "Die Rechnung würde bezahlt werden", "Die Rechnung wäre bezahlt worden", "Die Rechnung würde bezahlt"],
+        correct: 2
+    },
+    {
+        question: "Wie lautet der Konjunktiv II Passiv von 'Das Geschenk wird verpackt'?",
+        answers: ["Das Geschenk wurde verpackt", "Das Geschenk würde verpackt werden", "Das Geschenk wäre verpackt worden", "Das Geschenk würde verpackt"],
+        correct: 2
+    },
+    {
+        question: "Wie lautet der Konjunktiv II Passiv von 'Die Nachricht wird gelesen'?",
+        answers: ["Die Nachricht würde gelesen werden", "Die Nachricht wurde gelesen", "Die Nachricht wäre gelesen worden", "Die Nachricht wurde gelesen werden"],
+        correct: 1
     }
+];
 
-    function checkAnswer(answer) {
-        const questionObj = questions[currentQuestion];
-        const correctAnswer = questionObj.correct;
-
-        // Sound abspielen
-        const sound = new Audio(answer === correctAnswer ? 'correct-sound.mp3' : 'wrong-sound.mp3');
-        sound.play();
-
-        // Alle Buttons deaktivieren
-        for (let i = 1; i <= 4; i++) {
-            document.getElementById("answer" + i).disabled = true;
-        }
-
-        // Weiter-Button aktivieren
-        document.getElementById("next-button").disabled = false;
-    }
-
-    function nextQuestion() {
-        currentQuestion++;
-        if (currentQuestion < questions.length) {
-            loadQuestion();
-        } else {
-            alert("Herzlichen Glückwunsch! Du hast das Quiz abgeschlossen.");
-        }
-    }
-
-    loadQuestion();
-</script>
-
-</body>
-</html>
