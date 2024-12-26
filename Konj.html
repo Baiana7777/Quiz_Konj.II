@@ -1,4 +1,112 @@
-const questions = [
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deutschquiz: Konjunktiv II im Passiv</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        #quiz-container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        .question {
+            font-size: 1.5em;
+            margin: 20px 0;
+        }
+        .answer-btn {
+            display: block;
+            margin: 10px auto;
+            padding: 20px 40px;
+            font-size: 1.2em;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 70%;
+        }
+        .answer-btn:hover {
+            background-color: #45a049;
+        }
+        .answer-btn:active {
+            background-color: #397D3F;
+        }
+        #next-button {
+            margin-top: 20px;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        #next-button:hover {
+            background-color: #45a049;
+        }
+        #next-button:disabled {
+            background-color: #888;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+
+<div id="quiz-container">
+    <h1>Deutschquiz: Konjunktiv II im Passiv</h1>
+    <div id="question-container">
+        <p class="question" id="question"></p>
+        <button class="answer-btn" id="answer1" onclick="checkAnswer(1)"></button>
+        <button class="answer-btn" id="answer2" onclick="checkAnswer(2)"></button>
+        <button class="answer-btn" id="answer3" onclick="checkAnswer(3)"></button>
+        <button class="answer-btn" id="answer4" onclick="checkAnswer(4)"></button>
+    </div>
+    <button id="next-button" onclick="nextQuestion()" disabled>Weiter</button>
+</div>
+
+<script>
+    const questions = [
+        {
+            question: "Wie lautet der Konjunktiv II Passiv von 'Das Buch wird gelesen'?",
+            answers: ["Das Buch würde gelesen werden", "Das Buch würde gelesen", "Das Buch wäre gelesen worden", "Das Buch wäre gelesen"],
+            correct: 1
+        },
+        {
+            question: "Wie lautet der Konjunktiv II Passiv von 'Der Brief wird geschrieben'?",
+            answers: ["Der Brief würde geschrieben werden", "Der Brief wurde geschrieben", "Der Brief wäre geschrieben worden", "Der Brief wird geschrieben"],
+            correct: 1
+        },
+        {
+            question: "Wie lautet der Konjunktiv II Passiv von 'Die E-Mail wird verschickt'?",
+            answers: ["Die E-Mail würde verschickt werden", "Die E-Mail würde verschickt", "Die E-Mail wäre verschickt worden", "Die E-Mail wird verschickt"],
+            correct: 1
+        },
+        {
+            question: "Wie lautet der Konjunktiv II Passiv von 'Das Fenster wird geöffnet'?",
+            answers: ["Das Fenster würde geöffnet werden", "Das Fenster wurde geöffnet", "Das Fenster wäre geöffnet worden", "Das Fenster wird geöffnet"],
+            correct: 1
+        },
+        {
+            question: "Wie lautet der Konjunktiv II Passiv von 'Der Bericht wird verfasst'?",
+            answers: ["Der Bericht würde verfasst werden", "Der Bericht wurde verfasst", "Der Bericht wäre verfasst worden", "Der Bericht wird verfasst"],
+            correct: 1
+        },
+
     {
         question: "Wie lautet der Konjunktiv II Passiv von 'Das Buch wird geschrieben'?",
         answers: ["Das Buch würde geschrieben", "Das Buch wäre geschrieben worden", "Das Buch würde geschrieben werden", "Das Buch wurde geschrieben"],
@@ -101,3 +209,46 @@ const questions = [
     }
 ];
 
+
+    let currentQuestion = 0;
+
+    function loadQuestion() {
+        const questionObj = questions[currentQuestion];
+        document.getElementById("question").innerText = questionObj.question;
+        for (let i = 1; i <= 4; i++) {
+            document.getElementById("answer" + i).innerText = questionObj.answers[i - 1];
+        }
+        document.getElementById("next-button").disabled = true;
+    }
+
+    function checkAnswer(answer) {
+        const questionObj = questions[currentQuestion];
+        const correctAnswer = questionObj.correct;
+
+        // Sound abspielen
+        const sound = new Audio(answer === correctAnswer ? 'sounds/correct-sound.mp3' : 'sounds/wrong-sound.mp3');
+        sound.play();
+
+        // Alle Buttons deaktivieren
+        for (let i = 1; i <= 4; i++) {
+            document.getElementById("answer" + i).disabled = true;
+        }
+
+        // Weiter-Button aktivieren
+        document.getElementById("next-button").disabled = false;
+    }
+
+    function nextQuestion() {
+        currentQuestion++;
+        if (currentQuestion < questions.length) {
+            loadQuestion();
+        } else {
+            alert("Herzlichen Glückwunsch! Du hast das Quiz abgeschlossen.");
+        }
+    }
+
+    loadQuestion();
+</script>
+
+</body>
+</html>
